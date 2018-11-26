@@ -1,11 +1,18 @@
 pipeline {
     agent any
 
+    environment { 
+        CC = 'JAVA'
+        SERVER = 'TOMCAT'
+    }
+    
     stages {
         stage('Build') {
             steps {
                 echo 'Building..'
                 echo "Rodando ${env.BUILD_ID} on ${env.JENKINS_URL}"
+                echo "projeto ${env.CC} on server ${env.SERVER}"
+
             }
         }
         stage('Test') {
