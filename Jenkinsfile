@@ -1,15 +1,15 @@
 pipeline {
     agent any
 
-    environment { 
+    environment {
         CC = 'JAVA'
         SERVER = 'TOMCAT'
     }
-    
+
     parameters {
         string(name: 'APP', defaultValue: 'Argentum', description: 'Aplicação Argentum Web')
     }
-    
+
     stages {
         stage('Build') {
             steps {
@@ -33,7 +33,7 @@ pipeline {
     }
     post {
         always {
-            echo 'This will always run'
+            echo "This will always run ${currentBuild.result}"
         }
         success {
             echo 'This will run only if successful'
