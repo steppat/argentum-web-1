@@ -18,40 +18,43 @@ pipeline {
     stages {
 
         stage("environment") {
+            steps {
+              env.JAVA_HOME="${tool 'JDK8'}"
+              env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
+              sh 'java -version'
 
-            env.JAVA_HOME="${tool 'JDK8'}"
-            env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
-            sh 'java -version'
+              env.MVN_Home = tool 'M3'
+              env.MVN_CMD = "${env.MVN_Home}/bin/mvn"
+              sh "${env.MVN_CMD} -v"
 
-            env.MVN_Home = tool 'M3'
-            env.MVN_CMD = "${env.MVN_Home}/bin/mvn"
-            sh "${env.MVN_CMD} -v"
-
-            echo "Rodando ${env.BUILD_ID} on ${env.JENKINS_URL}"
-            echo "Projeto ${params.APP}, Linguagem ${env.CC} on server ${env.SERVER}"
-            echo "Branch ${env.BRANCH_NAME}"
-            echo "${currentBuild.result}"
+              echo "Rodando ${env.BUILD_ID} on ${env.JENKINS_URL}"
+              echo "Projeto ${params.APP}, Linguagem ${env.CC} on server ${env.SERVER}"
+              echo "Branch ${env.BRANCH_NAME}"
+              echo "${currentBuild.result}"
+            }
         }
 
         stage('Build') {
             steps {
-                echo 'Building..'
+                echo 'Building...'
                 echo "RUNNING MAVEN BUILD"
                 sh "${env.MVN_CMD} clean package"
             }
-
         }
+
         stage('Test') {
             steps {
                 echo 'Testing..'
             }
         }
+
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
             }
         }
     }
+    
     post {
         always {
             echo "This will always run ${currentBuild.result}"
