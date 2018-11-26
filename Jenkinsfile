@@ -6,6 +6,8 @@ pipeline {
         SERVER = 'TOMCAT'
     }
 
+    //curl -X POST --user admin:token -F 'APP=argentum-web' http://localhost:8080/job/argentum-web/buildWithParameters
+
     parameters {
         string(name: 'APP', defaultValue: 'Argentum', description: 'Aplicação Argentum Web')
     }
