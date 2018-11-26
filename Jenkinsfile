@@ -16,7 +16,7 @@ pipeline {
                 echo 'Building..'
                 echo "Rodando ${env.BUILD_ID} on ${env.JENKINS_URL}"
                 echo "Projeto ${params.APP}, Linguagem ${env.CC} on server ${env.SERVER}"
-
+                echo "${currentBuild.result}"
             }
         }
         stage('Test') {
