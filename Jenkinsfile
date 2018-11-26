@@ -6,8 +6,8 @@ pipeline {
         SERVER = 'TOMCAT'
         JAVA_HOME="${tool 'JDK8'}"
         PATH="${env.JAVA_HOME}/bin:${env.PATH}"
-        env.MVN_Home = tool 'M3'
-        env.MVN_CMD = "${env.MVN_Home}/bin/mvn"
+        MVN_Home = tool 'M3'
+        MVN_CMD = "${env.MVN_Home}/bin/mvn"
     }
 
     //generate token http://localhost:8080/user/admin/configure
