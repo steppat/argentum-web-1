@@ -15,9 +15,9 @@ pipeline {
     //no cli
     //ssh -i key_id_jenkins -l admin -p 5000 localhost build argentum-web
 
-    parameters {
-        string(name: 'APP', defaultValue: 'Argentum', description: 'Aplicação Argentum Web')
-    }
+    //parameters {
+    //    string(name: 'APP', defaultValue: 'Argentum', description: 'Aplicação Argentum Web')
+    //}
 
     stages {
 
