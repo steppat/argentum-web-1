@@ -4,6 +4,10 @@ pipeline {
     environment {
         CC = 'JAVA'
         SERVER = 'TOMCAT'
+        JAVA_HOME="${tool 'JDK8'}"
+        PATH="${env.JAVA_HOME}/bin:${env.PATH}"
+        env.MVN_Home = tool 'M3'
+        env.MVN_CMD = "${env.MVN_Home}/bin/mvn"
     }
 
     //generate token http://localhost:8080/user/admin/configure
@@ -19,12 +23,8 @@ pipeline {
 
         stage("environment") {
             steps {
-              env.JAVA_HOME="${tool 'JDK8'}"
-              env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
-              sh 'java -version'
 
-              env.MVN_Home = tool 'M3'
-              env.MVN_CMD = "${env.MVN_Home}/bin/mvn"
+              sh 'java -version'
               sh "${env.MVN_CMD} -v"
 
               echo "Rodando ${env.BUILD_ID} on ${env.JENKINS_URL}"
@@ -54,7 +54,7 @@ pipeline {
             }
         }
     }
-    
+
     post {
         always {
             echo "This will always run ${currentBuild.result}"
