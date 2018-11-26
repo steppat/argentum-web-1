@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
+                echo "Rodando ${env.BUILD_ID} on ${env.JENKINS_URL}"
             }
         }
         stage('Test') {
