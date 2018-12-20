@@ -1,4 +1,4 @@
 # argentum-web
 
 
-JAVA WEB APP Spring
+Simple JAVA WEB APP with Spring
